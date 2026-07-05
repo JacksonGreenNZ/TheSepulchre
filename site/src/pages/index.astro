@@ -39,8 +39,56 @@ const counts = Object.fromEntries(
     <span class="muted">{data.tweaks.length} {data.tweaks.length === 1 ? "tweak" : "tweaks"}</span>
   </div>
 
-  <div class="card">
-    <h3><a href={link("/contribute/")}>Have your own homebrew? Click here to contribute →</a></h3>
-    <span class="muted">Add an issue and I'll do it, or fork &amp; PR it yourself.</span>
+  <div id="contribute-banner" class="contribute-banner" hidden>
+    <button id="contribute-dismiss" class="contribute-dismiss" type="button" aria-label="Dismiss">&times;</button>
+    <a href={link("/contribute/")}>Have your own homebrew? Click here to contribute →</a>
   </div>
+
+  <style>
+    .contribute-banner {
+      position: fixed;
+      right: 1.25rem;
+      bottom: 1.25rem;
+      max-width: 300px;
+      background: var(--bg-raised);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--gold);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+      padding: 0.85rem 1.9rem 0.85rem 1rem;
+      font-size: 0.88rem;
+      line-height: 1.4;
+      z-index: 50;
+    }
+    .contribute-banner a { text-decoration: none; }
+    .contribute-banner a:hover { text-decoration: underline; }
+    .contribute-dismiss {
+      position: absolute;
+      top: 0.3rem;
+      right: 0.3rem;
+      width: 1.5rem;
+      height: 1.5rem;
+      line-height: 1;
+      padding: 0;
+      font-size: 1.1rem;
+      color: var(--muted);
+      background: transparent;
+      border: none;
+    }
+    .contribute-dismiss:hover { color: var(--gold); border-color: transparent; }
+    @media (max-width: 640px) {
+      .contribute-banner { left: 1.25rem; right: 1.25rem; max-width: none; }
+    }
+  </style>
+
+  <script>
+    const key = "sepulchre-contribute-dismissed";
+    const banner = document.getElementById("contribute-banner");
+    if (banner && !localStorage.getItem(key)) {
+      banner.hidden = false;
+    }
+    document.getElementById("contribute-dismiss")?.addEventListener("click", () => {
+      localStorage.setItem(key, "1");
+      if (banner) banner.hidden = true;
+    });
+  </script>
 </Base>
