@@ -1,0 +1,56 @@
+---
+const { title } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const link = (p) => `${base}${p}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title ? `${title} — The Sepulchre` : "The Sepulchre"}</title>
+    <style>
+      :root { --fg:#1a1a1a; --muted:#666; --line:#ddd; --bg:#fff; --accent:#7a1f1f; }
+      * { box-sizing: border-box; }
+      body { margin:0; font:16px/1.55 system-ui, sans-serif; color:var(--fg); background:var(--bg); }
+      header, main, footer { max-width: 900px; margin:0 auto; padding:0 1rem; }
+      header { border-bottom:1px solid var(--line); padding-top:1rem; padding-bottom:1rem; margin-bottom:1.5rem; }
+      header a.brand { font-weight:700; font-size:1.2rem; color:var(--fg); text-decoration:none; }
+      nav a { margin-right:1rem; color:var(--accent); text-decoration:none; font-size:.9rem; }
+      nav a:hover { text-decoration:underline; }
+      h1 { margin:.2rem 0 1rem; }
+      a { color:var(--accent); }
+      .muted { color:var(--muted); }
+      .tag { display:inline-block; font-size:.75rem; background:#f0f0f0; border:1px solid var(--line); border-radius:3px; padding:1px 6px; margin:0 4px 4px 0; }
+      .card { border:1px solid var(--line); border-radius:6px; padding:1rem; margin-bottom:1rem; }
+      .card h3 { margin:0 0 .3rem; }
+      .conflict { color:var(--accent); font-size:.85rem; }
+      table { border-collapse:collapse; width:100%; }
+      td, th { border:1px solid var(--line); padding:.5rem; text-align:left; vertical-align:top; font-size:.9rem; }
+      .filter { margin-bottom:1rem; }
+      .filter input, .filter select { padding:.4rem; font-size:.9rem; }
+      footer { border-top:1px solid var(--line); margin-top:3rem; padding:1.5rem 1rem; font-size:.8rem; color:var(--muted); }
+      iframe.pdf { width:100%; height:80vh; border:1px solid var(--line); }
+      .prose :is(h1,h2,h3){ margin-top:1.4rem; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a class="brand" href={link("/")}>The Sepulchre</a>
+      <nav style="margin-top:.5rem;">
+        <a href={link("/")}>Home</a>
+        <a href={link("/tweaks/")}>Tweaks</a>
+        <a href={link("/compatibility/")}>Compatibility</a>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer>
+      Unofficial fan project. Not affiliated with, endorsed by, or associated with
+      Games Workshop. All referenced trademarks and IP belong to their respective
+      owners. Content licensed GPL-3.0-only.
+    </footer>
+  </body>
+</html>

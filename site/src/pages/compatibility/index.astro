@@ -1,0 +1,59 @@
+---
+import Base from "../../layouts/Base.astro";
+import data from "../../data/content.json";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const link = (p) => `${base}${p}`;
+
+// for each domain, which sets replace it (these are mutually exclusive)
+const domainClaims = data.domains.map((d) => ({
+  ...d,
+  sets: data.sets.filter((s) => s.replaces.includes(d.id)),
+}));
+
+// for each target, which tweaks share it (mutually exclusive variants)
+const targetClaims = data.targets.map((t) => ({
+  ...t,
+  tweaks: data.tweaks.filter((tw) => tw.target === t.id),
+}));
+---
+
+<Base title="Compatibility">
+  <h1>Compatibility overview</h1>
+  <p class="muted">
+    Within each subsystem or rule below, only one option may be active at once.
+    Items grouped together conflict; pick one.
+  </p>
+
+  <h2>Subsystems (sets)</h2>
+  {domainClaims.map((d) => (
+    <div class="card">
+      <h3>{d.id}</h3>
+      <p class="muted">{d.description}</p>
+      {d.sets.length === 0 ? (
+        <span class="muted">No sets replace this yet.</span>
+      ) : (
+        <ul>
+          {d.sets.map((s) => <li><a href={link(`/set/${s.id}/`)}>{s.title}</a> <span class="muted">by {s.author}</span></li>)}
+        </ul>
+      )}
+      {d.sets.length > 1 && <div class="conflict">These {d.sets.length} are mutually exclusive.</div>}
+    </div>
+  ))}
+
+  <h2>Rules (tweaks)</h2>
+  {targetClaims.map((t) => (
+    <div class="card">
+      <h3>{t.id}</h3>
+      <p class="muted">{t.description}</p>
+      {t.tweaks.length === 0 ? (
+        <span class="muted">No tweaks target this yet.</span>
+      ) : (
+        <ul>
+          {t.tweaks.map((tw) => <li>{tw.title} <span class="muted">by {tw.author}</span></li>)}
+        </ul>
+      )}
+      {t.tweaks.length > 1 && <div class="conflict">These {t.tweaks.length} are mutually exclusive.</div>}
+    </div>
+  ))}
+</Base>

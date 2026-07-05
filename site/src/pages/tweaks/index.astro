@@ -1,0 +1,69 @@
+---
+import Base from "../../layouts/Base.astro";
+import data from "../../data/content.json";
+
+// group tweaks by target to show mutually-exclusive variants
+const byTarget = {};
+for (const t of data.tweaks) {
+  const key = t.target || "(no target — additive)";
+  (byTarget[key] ||= []).push(t);
+}
+const areas = [...new Set(data.tweaks.flatMap((t) => t.affects))].sort();
+---
+
+<Base title="Tweaks / QoL">
+  <h1>Tweaks / QoL Improvements</h1>
+  <p class="muted">
+    Atomic rule changes. Tweaks sharing a target are mutually-exclusive variants —
+    pick one. Everything else stacks.
+  </p>
+
+  <div class="filter">
+    <input id="q" type="text" placeholder="Search…" />
+    {areas.length > 0 && (
+      <select id="area">
+        <option value="">All areas</option>
+        {areas.map((a) => <option value={a}>{a}</option>)}
+      </select>
+    )}
+  </div>
+
+  <div id="list">
+    {Object.entries(byTarget).map(([target, group]) => (
+      <div class="card" data-area={group.flatMap((t) => t.affects).join(" ")}
+           data-text={group.map((t) => (t.title + " " + t.text).toLowerCase()).join(" ")}>
+        <h3>{target}</h3>
+        {group.length > 1 && <div class="conflict">{group.length} variants — mutually exclusive, pick one</div>}
+        <table>
+          <tbody>
+            {group.map((t) => (
+              <tr>
+                <td style="width:30%;"><strong>{t.title}</strong><br /><span class="muted">{t.author} · v{t.version}</span></td>
+                <td>{t.text}
+                  {t.affects.map((a) => <span class="tag">{a}</span>)}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    ))}
+    {data.tweaks.length === 0 && <p class="muted">No tweaks yet.</p>}
+  </div>
+
+  <script is:inline>
+    const q = document.getElementById("q");
+    const area = document.getElementById("area");
+    const cards = [...document.querySelectorAll("#list .card")];
+    function apply() {
+      const term = (q?.value || "").toLowerCase();
+      const a = area?.value || "";
+      for (const c of cards) {
+        const hit = c.dataset.text.includes(term) && (!a || c.dataset.area.split(" ").includes(a));
+        c.style.display = hit ? "" : "none";
+      }
+    }
+    q && q.addEventListener("input", apply);
+    area && area.addEventListener("change", apply);
+  </script>
+</Base>

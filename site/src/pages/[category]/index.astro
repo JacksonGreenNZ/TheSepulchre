@@ -1,0 +1,80 @@
+---
+import Base from "../../layouts/Base.astro";
+import data from "../../data/content.json";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const link = (p) => `${base}${p}`;
+
+const labels = {
+  "mission-packs": "Mission Packs",
+  "detachments": "Detachments",
+  "restored-content": "Restored Content",
+  "units": "Units",
+  "prime-advantages": "Prime Advantages",
+  "factions": "Factions",
+};
+
+export async function getStaticPaths() {
+  const d = (await import("../../data/content.json")).default;
+  return d.categories.map((category) => ({ params: { category } }));
+}
+
+const { category } = Astro.params;
+const sets = data.sets.filter((s) => s.category === category);
+
+// tags present in this category, for the filter dropdown
+const tags = [...new Set(sets.flatMap((s) => s.tags))].sort();
+
+// which domains are contested (claimed by >1 set anywhere) — for conflict notes
+const domainCount = {};
+for (const s of data.sets) for (const dcat of s.replaces) domainCount[dcat] = (domainCount[dcat] || 0) + 1;
+---
+
+<Base title={labels[category] || category}>
+  <h1>{labels[category] || category}</h1>
+
+  <div class="filter">
+    <input id="q" type="text" placeholder="Search title or author…" />
+    {tags.length > 0 && (
+      <select id="tag">
+        <option value="">All tags</option>
+        {tags.map((t) => <option value={t}>{t}</option>)}
+      </select>
+    )}
+  </div>
+
+  <div id="list">
+    {sets.map((s) => (
+      <div class="card" data-title={s.title.toLowerCase()} data-author={(s.author||"").toLowerCase()} data-tags={s.tags.join(" ")}>
+        <h3><a href={link(`/set/${s.id}/`)}>{s.title}</a></h3>
+        <div class="muted">by {s.author} · v{s.version}</div>
+        <div>{s.tags.map((t) => <span class="tag">{t}</span>)}</div>
+        {s.replaces.length > 0 && (
+          <div class="conflict">
+            Replaces {s.replaces.join(", ")}
+            {s.replaces.some((d) => domainCount[d] > 1) && " — conflicts with other sets replacing the same subsystem"}
+          </div>
+        )}
+      </div>
+    ))}
+    {sets.length === 0 && <p class="muted">Nothing here yet.</p>}
+  </div>
+
+  <script is:inline>
+    const q = document.getElementById("q");
+    const tag = document.getElementById("tag");
+    const cards = [...document.querySelectorAll("#list .card")];
+    function apply() {
+      const term = (q?.value || "").toLowerCase();
+      const t = tag?.value || "";
+      for (const c of cards) {
+        const hit =
+          (c.dataset.title.includes(term) || c.dataset.author.includes(term)) &&
+          (!t || c.dataset.tags.split(" ").includes(t));
+        c.style.display = hit ? "" : "none";
+      }
+    }
+    q && q.addEventListener("input", apply);
+    tag && tag.addEventListener("change", apply);
+  </script>
+</Base>

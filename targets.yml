@@ -1,0 +1,15 @@
+# Targets: the exact vanilla rule a tweak changes. Two tweaks sharing a target
+# are mutually exclusive variants. Owner-maintained; add via reviewed PR.
+# The `id` is what a tweak's `target` field must match exactly.
+
+targets:
+  - id: vanguard-scoring
+    description: >
+      How units with the Vanguard (X) characteristic score against enemy units
+      near objectives.
+  - id: line-scoring
+    description: >
+      How units with the Line (X) characteristic hold and score objectives.
+  - id: reaction-timing
+    description: >
+      When reactions may be declared during the opponent's turn.

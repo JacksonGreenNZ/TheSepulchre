@@ -1,0 +1,40 @@
+---
+import Base from "../layouts/Base.astro";
+import data from "../data/content.json";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const link = (p) => `${base}${p}`;
+
+const labels = {
+  "mission-packs": "Mission Packs",
+  "detachments": "Detachments",
+  "restored-content": "Restored Content",
+  "units": "Units",
+  "prime-advantages": "Prime Advantages",
+  "factions": "Factions",
+};
+
+const counts = Object.fromEntries(
+  data.categories.map((c) => [c, data.sets.filter((s) => s.category === c).length])
+);
+---
+
+<Base title="Home">
+  <h1>The Sepulchre</h1>
+  <p class="muted">
+    A community archive of homebrew rules for Horus Heresy 3rd edition. Browse by
+    category below, or see the <a href={link("/compatibility/")}>compatibility overview</a>.
+  </p>
+
+  {data.categories.map((c) => (
+    <div class="card">
+      <h3><a href={link(`/${c}/`)}>{labels[c] || c}</a></h3>
+      <span class="muted">{counts[c]} {counts[c] === 1 ? "set" : "sets"}</span>
+    </div>
+  ))}
+
+  <div class="card">
+    <h3><a href={link("/tweaks/")}>Tweaks / QoL Improvements</a></h3>
+    <span class="muted">{data.tweaks.length} {data.tweaks.length === 1 ? "tweak" : "tweaks"}</span>
+  </div>
+</Base>
