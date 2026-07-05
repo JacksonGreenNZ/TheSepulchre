@@ -9,45 +9,268 @@ const link = (p) => `${base}${p}`;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
     <title>{title ? `${title} — The Sepulchre` : "The Sepulchre"}</title>
-    <style>
-      :root { --fg:#1a1a1a; --muted:#666; --line:#ddd; --bg:#fff; --accent:#7a1f1f; }
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:wght@500;600;700&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style is:global>
+      :root {
+        --bg: #0d0b0a;
+        --bg-raised: #16120f;
+        --bg-raised-2: #1b1611;
+        --fg: #e6dfd0;
+        --muted: #9c8f7c;
+        --line: #382d21;
+        --line-soft: rgba(230, 223, 208, 0.09);
+        --brass: #a9863f;
+        --gold: #c7a355;
+        --accent: #d9635a;
+        --accent-dim: #7a2420;
+        --danger: #d9635a;
+        --font-display: "Cinzel", "Times New Roman", serif;
+        --font-heading: "Cormorant Garamond", "Times New Roman", serif;
+        --font-body: "Crimson Pro", Georgia, serif;
+        --radius: 0px;
+        --ease: cubic-bezier(0.2, 0.7, 0.3, 1);
+      }
+
       * { box-sizing: border-box; }
-      body { margin:0; font:16px/1.55 system-ui, sans-serif; color:var(--fg); background:var(--bg); }
-      header, main, footer { max-width: 900px; margin:0 auto; padding:0 1rem; }
-      header { border-bottom:1px solid var(--line); padding-top:1rem; padding-bottom:1rem; margin-bottom:1.5rem; }
-      header a.brand { font-weight:700; font-size:1.2rem; color:var(--fg); text-decoration:none; }
-      nav a { margin-right:1rem; color:var(--accent); text-decoration:none; font-size:.9rem; }
-      nav a:hover { text-decoration:underline; }
-      h1 { margin:.2rem 0 1rem; }
-      a { color:var(--accent); }
-      .muted { color:var(--muted); }
+
+      html { color-scheme: dark; }
+
+      body {
+        margin: 0;
+        font: 17px/1.65 var(--font-body);
+        color: var(--fg);
+        background:
+          radial-gradient(ellipse 1400px 700px at 50% -20%, rgba(0, 0, 0, 0), transparent 55%),
+          radial-gradient(ellipse 1200px 900px at 50% 50%, transparent 45%, rgba(0, 0, 0, 0.5) 100%),
+          var(--bg);
+        background-attachment: fixed;
+      }
+
+      ::selection { background: var(--accent-dim); color: #fff; }
+
+      header, main, footer { max-width: 900px; margin: 0 auto; padding: 0 1.25rem; }
+
+      header {
+        position: relative;
+        padding-top: 1.6rem;
+        padding-bottom: 1.4rem;
+        margin-bottom: 2rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0.75rem 1.5rem;
+      }
+      header::after {
+        content: "";
+        position: absolute;
+        left: 0; right: 0; bottom: 0;
+        height: 3px;
+        border-bottom: 1px solid var(--brass);
+        border-top: 1px solid var(--line);
+        opacity: 0.7;
+      }
+
+      header a.brand {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 1.3rem;
+        letter-spacing: 0.08em;
+        color: var(--fg);
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+      header a.brand:hover { color: var(--gold); }
+      header a.brand::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border: 1px solid var(--brass);
+        transform: rotate(45deg);
+        flex: none;
+      }
+
+      nav { display: flex; flex-wrap: wrap; gap: 0.4rem 1.5rem; }
+      nav a {
+        position: relative;
+        color: var(--muted);
+        text-decoration: none;
+        font-family: var(--font-display);
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        padding-bottom: 0.3rem;
+        transition: color 0.2s var(--ease);
+      }
+      nav a::after {
+        content: "";
+        position: absolute;
+        left: 0; right: 100%; bottom: 0;
+        height: 1px;
+        background: var(--accent);
+        transition: right 0.25s var(--ease);
+      }
+      nav a:hover { color: var(--fg); }
+      nav a:hover::after { right: 0; }
+
+      h1, h2, h3 { font-family: var(--font-heading); font-weight: 600; line-height: 1.2; color: var(--fg); }
+      h1 { margin: 0.2rem 0 1.1rem; font-size: 2.5rem; letter-spacing: 0.01em; }
+      h2 { margin: 2.2rem 0 0.9rem; font-size: 1.7rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--line); }
+      h3 { margin: 0 0 0.35rem; font-size: 1.3rem; }
+
+      p { margin: 0 0 1rem; }
+
+      a { color: var(--accent); text-underline-offset: 3px; }
+      a:hover { color: var(--gold); }
+
+      a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+        outline: 2px solid var(--gold);
+        outline-offset: 2px;
+        border-radius: 2px;
+      }
+
+      .muted { color: var(--muted); }
+
       .tag {
-  display: inline-block;
-  font-size: .75rem;
-  background: #f0f0f0;
-  border: 1px solid var(--line);
-  border-radius: 3px;
-  padding: 2px 8px;
-  margin: 0 6px 6px 0;
-  line-height: 1.4;
-}
-      .card { border:1px solid var(--line); border-radius:6px; padding:1rem; margin-bottom:1rem; }
-      .card h3 { margin:0 0 .3rem; }
-      .conflict { color:var(--accent); font-size:.85rem; }
-      table { border-collapse:collapse; width:100%; }
-      td, th { border:1px solid var(--line); padding:.5rem; text-align:left; vertical-align:top; font-size:.9rem; }
-      .filter { margin-bottom:1rem; }
-      .filter input, .filter select { padding:.4rem; font-size:.9rem; }
-      footer { border-top:1px solid var(--line); margin-top:3rem; padding:1.5rem 1rem; font-size:.8rem; color:var(--muted); }
-      iframe.pdf { width:100%; height:80vh; border:1px solid var(--line); }
-      .prose :is(h1,h2,h3){ margin-top:1.4rem; }
+        display: inline-block;
+        font-family: var(--font-display);
+        font-size: 0.65rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--gold);
+        background: rgba(203, 171, 92, 0.08);
+        border: 1px solid rgba(203, 171, 92, 0.35);
+        border-radius: var(--radius);
+        padding: 3px 8px;
+        margin: 0 6px 6px 0;
+        line-height: 1.4;
+      }
+
+      .card {
+        background: var(--bg-raised);
+        border: 1px solid var(--line);
+        border-left: 3px solid var(--accent-dim);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        padding: 1.1rem 1.25rem;
+        margin-bottom: 1.1rem;
+        transition: border-color 0.2s var(--ease);
+      }
+      .card:has(a:hover) { border-left-color: var(--gold); }
+      .card h3 { margin: 0 0 0.3rem; }
+      .card h3 a { text-decoration: none; }
+      .card h3 a:hover { text-decoration: underline; }
+
+      .conflict {
+        color: var(--danger);
+        font-size: 0.85rem;
+        font-style: italic;
+        border-left: 2px solid var(--danger);
+        padding-left: 0.6rem;
+        margin-top: 0.5rem;
+      }
+
+      table { border-collapse: collapse; width: 100%; }
+      .card > table, .card + table { margin-top: 0.5rem; }
+      thead th {
+        font-family: var(--font-display);
+        font-size: 0.7rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--gold);
+        border-bottom: 1px solid var(--line);
+      }
+      td, th {
+        border: 1px solid var(--line-soft);
+        padding: 0.65rem 0.75rem;
+        text-align: left;
+        vertical-align: top;
+        font-size: 0.92rem;
+      }
+      tbody tr:nth-child(odd) { background: rgba(255, 255, 255, 0.015); }
+
+      .filter {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin-bottom: 1.3rem;
+      }
+      .filter input, .filter select {
+        padding: 0.55rem 0.7rem;
+        font: inherit;
+        font-size: 0.9rem;
+        color: var(--fg);
+        background: var(--bg-raised);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+      }
+      .filter input { flex: 1 1 220px; }
+      .filter input::placeholder { color: var(--muted); }
+      .filter input:hover, .filter select:hover { border-color: var(--gold); }
+
+      table, .filter input, .filter select, iframe.pdf { max-width: 100%; }
+      main { overflow-x: auto; }
+
+      footer {
+        border-top: 1px solid var(--line);
+        margin-top: 3.5rem;
+        padding: 1.6rem 1.25rem 2.2rem;
+        font-size: 0.78rem;
+        line-height: 1.6;
+        color: var(--muted);
+      }
+
+      iframe.pdf {
+        width: 100%;
+        height: 80vh;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: #fff;
+      }
+
+      .prose { line-height: 1.7; }
+      .prose :is(h1, h2, h3) { margin-top: 1.4rem; }
+      .prose :is(h1, h2, h3):first-child { margin-top: 0; }
+
+      button {
+        font: inherit;
+        color: var(--fg);
+        background: var(--bg-raised-2);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 0.5rem 0.9rem;
+        cursor: pointer;
+        transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
+      }
+      button:hover { border-color: var(--gold); color: var(--gold); }
+
+      a[href] { cursor: pointer; }
+
+      @media (max-width: 640px) {
+        h1 { font-size: 2rem; }
+        header { padding-top: 1.25rem; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { transition-duration: 0.001ms !important; animation-duration: 0.001ms !important; }
+      }
     </style>
   </head>
   <body>
     <header>
       <a class="brand" href={link("/")}>The Sepulchre</a>
-      <nav style="margin-top:.5rem;">
+      <nav>
         <a href={link("/")}>Home</a>
         <a href={link("/tweaks/")}>Tweaks</a>
         <a href={link("/compatibility/")}>Compatibility</a>
