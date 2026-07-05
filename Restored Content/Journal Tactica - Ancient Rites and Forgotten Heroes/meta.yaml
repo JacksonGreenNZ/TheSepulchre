@@ -1,0 +1,17 @@
+id: ancient-rites-and-forgotten-heroes-jackson-green
+title: "Journal Tactica: Ancient Rites and Forgotten Heroes"
+author: Jackson Green
+version: 1.0.0
+license: GPL-3.0-only
+replaces:
+  - "restored content: rites of war"
+requires: []
+descriptive_tags:
+  - restored-content
+  - detachments
+  - units
+  - wargear
+  - characters
+  - prime-advantages
+files:
+  - rules.pdf

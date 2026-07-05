@@ -1,0 +1,29 @@
+# Copy this folder, rename it descriptively
+# fill in every field below, then delete these comments.
+
+id:                     # unique across the whole repo, lowercase-with-hyphens (e.g. ancient-rites-jackson-green)
+title: ""               # display name of the set (e.g. "Journal Tactica - Ancient Rites and Forgotten Heroes")
+author:                 # your name or handle
+version: 1.0.0          # bump when you update: 1.0.1 fixes, 1.1.0 additions, 2.0.0 overhauls
+license: GPL-3.0-only   # must be GPL-3.0-only
+
+# Subsystems this set OVERRIDES. Use only entries that exist in /domains.yml.
+# Two sets that replace the same subsystem are alternatives, not combinable.
+# Leave as [] if the set adds content without replacing a subsystem (most mission packs).
+replaces: []
+# Example:
+# replaces:
+#   - "restored content: rites of war"
+
+# Subsystems this set NEEDS in play to function. Use only entries from /domains.yml.
+# Leave as [] if the set is self-contained.
+requires: []
+
+# Free-form discovery tags. Not used for compatibility. Add as many as apply.
+descriptive_tags: []
+# Example:
+# descriptive_tags: [narrative, siege, drop-assault]
+
+# The rules files in this folder (PDF and/or images). List every file.
+files:
+  - # filename.extension
