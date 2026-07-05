@@ -1,0 +1,14 @@
+id: istvaan-missions-honest-heresy
+title: "Istvaan Missions"
+author: Honest Heresy
+version: 1.0.0
+license:
+
+replaces: []
+
+requires: []
+
+descriptive_tags: [narrative, mission-pack, campaign, objectives, supply-drop, domination]
+
+files:
+  - Istavan_Missions_V2.pdf

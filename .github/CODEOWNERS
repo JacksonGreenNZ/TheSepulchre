@@ -1,0 +1,20 @@
+# Require owner review for changes to controlled vocabulary and infrastructure.
+# Contributors submit content freely; the files below can only be changed with
+#
+# For this to enforce anything, enable branch protection on main with
+# "Require review from Code Owners" turned on.
+
+# Controlled vocabularies — the conflict model depends on these being stable.
+/domains.yml        @JacksonGreenNZ
+/targets.yml        @JacksonGreenNZ
+
+# Validation and CI — submitters must not weaken their own checks.
+/scripts/           @JacksonGreenNZ
+/.github/           @JacksonGreenNZ
+
+# Repo-level docs and licence.
+/README.md          @JacksonGreenNZ
+/LICENSE            @JacksonGreenNZ
+
+# Submission template.
+/_template/         @JacksonGreenNZ

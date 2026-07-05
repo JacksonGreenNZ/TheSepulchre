@@ -1,0 +1,14 @@
+id: siege-of-hightower-matt-christopher
+title: "Siege of Hightower Mission Pack"
+author: Matt Christopher
+version: 1.0.0
+license: GPL-3.0-only
+
+replaces: []
+
+requires: []
+
+descriptive_tags: [narrative, campaign, siege, urban, zone-mortalis, loyalist-vs-traitor, age-of-darkness]
+
+files:
+  - Extra-missions_merged_removed.pdf

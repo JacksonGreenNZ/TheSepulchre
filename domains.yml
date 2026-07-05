@@ -1,0 +1,31 @@
+# Conflict domains: subsystems where only ONE homebrew set may be active at once.
+# Two sets that both list the same domain id under `replaces` conflict and must
+# not be used together in one army.
+#
+# A domain belongs here only if running two homebrew versions of it at once would
+# break the game. Additive content (new units, wargear, characters, missions) is
+# NOT a domain — it goes in descriptive_tags.
+#
+# This file is owner-maintained. New domains are added only via a reviewed PR
+# (protected by CODEOWNERS). Contributors tag from this list; they do not invent
+# entries. The `id` string is what `replaces`/`requires` in meta.yaml must match
+# exactly, including case and spacing.
+
+domains:
+  - id: "rites of war"
+    description: >
+      Army-wide Rites of War / force-construction rule packages that reshape how a
+      whole force is built and fights. Covers both restored (prior-edition) and
+      newly designed rites. Only one may be active in an army.
+
+  - id: "terrain"
+    description: >
+      Rules governing terrain: cover, terrain classifications, and battlefield
+      features. A wholesale terrain ruleset replaces the default set, so only one
+      may be active.
+
+  - id: "reactions"
+    description: >
+      The reactions system (out-of-phase actions taken during the opponent's turn).
+      A homebrew reactions overhaul replaces the default system, so only one may be
+      active.

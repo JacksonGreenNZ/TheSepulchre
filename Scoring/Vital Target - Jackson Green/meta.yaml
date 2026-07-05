@@ -1,0 +1,14 @@
+id: vital-target-jackson-green
+title: "Vital Target"
+author: Jackson Green
+version: 1.0.0
+license: GPL-3.0-only
+
+replaces: []
+
+requires: []
+
+descriptive_tags: [scoring-method, secondary, centrepiece, hobby, narrative, objective]
+
+files:
+  - Vital_Target.md
