@@ -27,7 +27,7 @@ Icons by u/Explosive_Florist (Reddit). Includes adapted versions of Robert Jardi
 
 ## Files
 
-- `rules.pdf` — the full supplement (v1.0, 2026)
+- `Journal_Tactica___Ancient_Rites.pdf` — the full supplement (v1.0, 2026)
 
 ## Licence
 
