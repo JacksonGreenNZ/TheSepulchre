@@ -1,0 +1,65 @@
+---
+import Base from "../../layouts/Base.astro";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const link = (p) => `${base}${p}`;
+const repo = "https://github.com/JacksonGreenNZ/TheSepulchre";
+---
+
+<Base title="Contribute">
+  <h1>Contribute your own work</h1>
+  <p class="muted">
+    Got a mission pack, detachment, restored content, or other homebrew for Horus
+    Heresy 3rd edition? Here's how to get it added to the archive.
+  </p>
+
+  <h2>Option 1 — Just send it to me</h2>
+  <div class="card">
+    <h3>Open an issue</h3>
+    <p>
+      Don't want to deal with git? <a href={`${repo}/issues/new`}>Open an issue</a>
+      on the repository, attach your document (PDF or images), and describe what
+      it is. I'll turn it into a proper entry and add it for you.
+    </p>
+  </div>
+
+  <h2>Option 2 — Submit it yourself (preferred)</h2>
+  <div class="card">
+    <h3>Fork, fill in the template, open a pull request</h3>
+    <ol>
+      <li><a href={`${repo}/fork`}>Fork the repository</a>.</li>
+      <li>
+        Copy the <a href={`${repo}/tree/main/_template`}>_template</a> folder into
+        the category it belongs in (<code>mission-packs</code>,
+        <code>detachments</code>, <code>restored-content</code>,
+        <code>units</code>, <code>prime-advantages</code>, <code>factions</code>,
+        <code>scoring</code>, or <code>tweaks</code>), and rename it descriptively
+        (e.g. <code>Istvaan-3-Jimmy-Space</code>).
+      </li>
+      <li>
+        Fill out every field in <code>meta.yaml</code> — a unique <code>id</code>,
+        title, author, version, license, and any <code>replaces</code> /
+        <code>requires</code> tags drawn from
+        <a href={`${repo}/blob/main/domains.yml`}>domains.yml</a>.
+      </li>
+      <li>Write the <code>README.md</code> describing what the set contains.</li>
+      <li>Add your PDF/image files and list them under <code>files</code> in the metadata.</li>
+      <li><a href={`${repo}/compare`}>Open a pull request</a> back to the main repo.</li>
+    </ol>
+    <p class="muted">
+      Full details on the folder structure, metadata format, and how compatibility
+      tags work are in the <a href={`${repo}#readme`}>repository README</a>.
+    </p>
+  </div>
+
+  <h2>Licensing</h2>
+  <div class="card">
+    <p>
+      All content is released under <a href={`${repo}/blob/main/LICENSE`}>GPL-3.0-only</a>.
+      By submitting, you affirm the work is your own (or that you have the
+      rights to release it) and agree to license it under GPL-3.0. Don't submit
+      other people's content without their permission — public availability is
+      not the same as permission to redistribute.
+    </p>
+  </div>
+</Base>

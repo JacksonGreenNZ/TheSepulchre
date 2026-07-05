@@ -12,6 +12,7 @@ const labels = {
   "units": "Units",
   "prime-advantages": "Prime Advantages",
   "factions": "Factions",
+  "scoring": "Scoring",
 };
 
 const counts = Object.fromEntries(
@@ -36,5 +37,10 @@ const counts = Object.fromEntries(
   <div class="card">
     <h3><a href={link("/tweaks/")}>Tweaks / QoL Improvements</a></h3>
     <span class="muted">{data.tweaks.length} {data.tweaks.length === 1 ? "tweak" : "tweaks"}</span>
+  </div>
+
+  <div class="card">
+    <h3><a href={link("/contribute/")}>Have your own homebrew? Click here to contribute →</a></h3>
+    <span class="muted">Add an issue and I'll do it, or fork &amp; PR it yourself.</span>
   </div>
 </Base>
