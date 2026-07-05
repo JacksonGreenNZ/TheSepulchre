@@ -4,7 +4,7 @@ author: Jackson Green
 version: 1.0.0
 license: GPL-3.0-only
 replaces:
-  - "restored content: rites of war"
+  - "rites of war"
 requires: []
 descriptive_tags:
   - restored-content
