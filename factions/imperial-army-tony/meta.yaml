@@ -1,0 +1,15 @@
+id: imperial-army-tony-formosa
+title: "The Imperial Army - The Anvil of the Emperor"
+author: Tony Formosa
+version: 1.6.0
+license: GPL-3.0-only
+
+# New faction. Adds a complete army list rather than overriding an existing subsystem.
+replaces: []
+
+requires: []
+
+descriptive_tags: [faction, imperial-army, excertus-imperialis, horus-heresy, age-of-darkness, combined-arms, orders, doctrines]
+
+files:
+  - Liber_Imperial_Army_1_6.pdf
