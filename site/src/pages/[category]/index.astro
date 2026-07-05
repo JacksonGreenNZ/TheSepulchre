@@ -46,8 +46,8 @@ for (const s of data.sets) for (const dcat of s.replaces) domainCount[dcat] = (d
 
   <div id="list">
     {sets.map((s) => (
-      <div class="card" data-title={s.title.toLowerCase()} data-author={(s.author||"").toLowerCase()} data-tags={s.tags.join(" ")}>
-        <h3><a href={link(`/set/${s.id}/`)}>{s.title}</a></h3>
+      <div class="card card--marker" data-title={s.title.toLowerCase()} data-author={(s.author||"").toLowerCase()} data-tags={s.tags.join(" ")}>
+        <h3><a class="stretched-link" href={link(`/set/${s.id}/`)}>{s.title}</a></h3>
         <div class="muted">by {s.author} · v{s.version}</div>
         <div>{s.tags.map((t) => <span class="tag">{t}</span>)}</div>
         {s.replaces.length > 0 && (

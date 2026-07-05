@@ -28,14 +28,14 @@ const counts = Object.fromEntries(
   </p>
 
   {data.categories.map((c) => (
-    <div class="card">
-      <h3><a href={link(`/${c}/`)}>{labels[c] || c}</a></h3>
+    <div class="card card--chapter">
+      <h3><a class="stretched-link" href={link(`/${c}/`)}>{labels[c] || c}</a></h3>
       <span class="muted">{counts[c]} {counts[c] === 1 ? "set" : "sets"}</span>
     </div>
   ))}
 
-  <div class="card">
-    <h3><a href={link("/tweaks/")}>Tweaks / QoL Improvements</a></h3>
+  <div class="card card--chapter">
+    <h3><a class="stretched-link" href={link("/tweaks/")}>Tweaks / QoL Improvements</a></h3>
     <span class="muted">{data.tweaks.length} {data.tweaks.length === 1 ? "tweak" : "tweaks"}</span>
   </div>
 
@@ -52,7 +52,6 @@ const counts = Object.fromEntries(
       max-width: 300px;
       background: var(--bg-raised);
       border: 1px solid var(--line);
-      border-left: 3px solid var(--gold);
       box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
       padding: 0.85rem 1.9rem 0.85rem 1rem;
       font-size: 0.88rem;

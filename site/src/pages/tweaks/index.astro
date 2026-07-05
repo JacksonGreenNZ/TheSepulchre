@@ -30,7 +30,7 @@ const areas = [...new Set(data.tweaks.flatMap((t) => t.affects))].sort();
 
   <div id="list">
     {Object.entries(byTarget).map(([target, group]) => (
-      <div class="card" data-area={group.flatMap((t) => t.affects).join(" ")}
+      <div class="card card--marker" data-area={group.flatMap((t) => t.affects).join(" ")}
            data-text={group.map((t) => (t.title + " " + t.text).toLowerCase()).join(" ")}>
         <h3>{target}</h3>
         {group.length > 1 && <div class="conflict">{group.length} variants — mutually exclusive, pick one</div>}

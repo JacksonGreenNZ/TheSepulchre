@@ -50,8 +50,11 @@ for (const category of SET_CATEGORIES) {
 
     const meta = readYaml(metaPath);
     const readmePath = path.join(folder, "README.md");
+    // The page template already renders set.title as the page's <h1>; strip a
+    // leading H1 from the README so it isn't duplicated as a second, identical
+    // top-level heading (a real landmark-navigation issue for screen readers).
     const readmeHtml = fs.existsSync(readmePath)
-      ? marked.parse(fs.readFileSync(readmePath, "utf8"))
+      ? marked.parse(fs.readFileSync(readmePath, "utf8").replace(/^#\s+.+\n+/, ""))
       : "";
 
     // copy files into public/pdfs/<id>/
