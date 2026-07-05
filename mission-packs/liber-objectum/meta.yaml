@@ -1,0 +1,14 @@
+id: liber-objectum-seanron-mccarter
+title: "Liber Objectum"
+author: Sean 'Seanron' McCarter
+version: 5.0.0
+license: GPL-3.0-only
+
+replaces: []
+
+requires: []
+
+descriptive_tags: [mission-pack, deployment-maps, expansion-missions, legendary-missions, matched-play, age-of-darkness, third-edition]
+
+files:
+  - Liber_Objectum_v5.pdf
