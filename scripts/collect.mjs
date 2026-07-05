@@ -20,6 +20,7 @@ const SET_CATEGORIES = [
   "restored-content",
   "units",
   "prime-advantages",
+  "scoring",
   "factions",
 ];
 
