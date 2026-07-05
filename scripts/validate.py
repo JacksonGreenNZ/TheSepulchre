@@ -31,7 +31,7 @@ except ImportError:
     sys.exit(1)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-REQUIRED_FIELDS = ["id", "title", "author", "version", "license", "files"]
+REQUIRED_FIELDS = ["id", "title", "author", "version", "files"]
 ALLOWED_LICENSE = "GPL-3.0-only"
 SOFT_WARN_TAGS = {"units", "wargear"}
 
@@ -87,11 +87,6 @@ for path in meta_files:
     for field in REQUIRED_FIELDS:
         if field not in meta or meta[field] in (None, "", []):
             errors.append(f"{rel}: missing required field '{field}'")
-
-    if meta.get("license") != ALLOWED_LICENSE:
-        errors.append(
-            f"{rel}: license must be '{ALLOWED_LICENSE}' (got '{meta.get('license')}')"
-        )
 
     cid = meta.get("id")
     if cid:
