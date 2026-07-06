@@ -1,0 +1,17 @@
+id: modalities-of-war-powerfist
+title: "Modalities Of War"
+author: Powerfist
+version: 1.12.0
+license: GPL-3.0-only
+
+# Replaces the Rites of War subsystem. Each Modality adds a bespoke Apex or
+# Auxiliary detachment plus Modality-specific Prime Advantages and limitations.
+replaces:
+  - "rites of war"
+
+requires: []
+
+descriptive_tags: [rites-of-war, detachments, prime-advantages, legion-specific, generic]
+
+files:
+  - Copy_of_Modalities_Of_War_v1.12.pdf
