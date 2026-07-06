@@ -20,7 +20,7 @@ A community supplement for Horus Heresy: Age of Darkness (3rd Edition) that rein
 
 ## Files
 
-- `Copy_of_Modalities_Of_War_v1_12.pdf` - the full supplement: mission statement, usage notes, and all Legion and generic Modalities of War.
+- `Modalities_Of_War_v1_12.pdf` - the full supplement: mission statement, usage notes, and all Legion and generic Modalities of War.
 
 ## Licence
 
