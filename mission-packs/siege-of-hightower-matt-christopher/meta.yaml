@@ -8,7 +8,7 @@ replaces: []
 
 requires: []
 
-descriptive_tags: [narrative, campaign, siege, urban, zone-mortalis, loyalist-vs-traitor, age-of-darkness]
+descriptive_tags: [narrative, campaign, siege, urban, zone-mortalis, loyalist-vs-traitor]
 
 files:
   - Extra-missions_merged_removed.pdf

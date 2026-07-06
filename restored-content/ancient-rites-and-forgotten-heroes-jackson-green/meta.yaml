@@ -6,12 +6,6 @@ license: GPL-3.0-only
 replaces:
   - "rites of war"
 requires: []
-descriptive_tags:
-  - restored-content
-  - detachments
-  - units
-  - wargear
-  - characters
-  - prime-advantages
+descriptive_tags: [restored-content, detachments, units, wargear, characters, prime-advantages]
 files:
   - Journal_Tactica___Ancient_Rites.pdf

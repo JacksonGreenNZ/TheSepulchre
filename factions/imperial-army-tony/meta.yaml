@@ -9,7 +9,7 @@ replaces: []
 
 requires: []
 
-descriptive_tags: [faction, imperial-army, excertus-imperialis, horus-heresy, age-of-darkness, combined-arms, orders, doctrines]
+descriptive_tags: [faction, imperial-army, excertus-imperialis, orders, doctrines]
 
 files:
   - Liber Imperial Army 1.6.pdf

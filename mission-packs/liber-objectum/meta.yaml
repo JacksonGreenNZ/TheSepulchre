@@ -8,7 +8,7 @@ replaces: []
 
 requires: []
 
-descriptive_tags: [mission-pack, deployment-maps, expansion-missions, legendary-missions, matched-play, age-of-darkness, third-edition]
+descriptive_tags: [mission-pack, deployment-maps, expansion-missions, legendary-missions, matched-play]
 
 files:
   - Liber Objectum.pdf

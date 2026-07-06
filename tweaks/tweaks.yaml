@@ -1,10 +1,10 @@
 tweaks:
   - id: vanguard-objective-scoring-jgreen
-    title: "Vanguard objective proximity scoring"
+    title: "Vanguard objective scoring"
     author: jackson-green
     version: 1.0.0
     text: >
-      A unit with Vanguard (X) scores against any enemy unit that started the
+      A unit with Vanguard (X) can score against any enemy unit that started the
       turn within 3" of an objective marker.
     affects: [scoring]
     target: vanguard-scoring
