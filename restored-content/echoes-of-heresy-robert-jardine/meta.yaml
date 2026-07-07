@@ -1,0 +1,19 @@
+id: detachments-as-rites-of-war-robert-jardine
+title: "Echoes of Heresy Event Pack - Detachments as Rites of War"
+author: Robert Jardine
+version: 1.0.0
+license: GPL-3.0-only
+
+# Subsystems this set OVERRIDES.
+replaces:
+  - "rites of war"
+
+# Subsystems this set NEEDS in play to function.
+requires: []
+
+# Free-form discovery tags.
+descriptive_tags: [detachments, list-building, rites of war, legacy content]
+
+# The rules files in this folder (PDF and/or images).
+files:
+  - The_Valley_of_Fallen_Sons_Event_Pack_Pg_6_7.pdf
